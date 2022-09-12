@@ -23,9 +23,34 @@ const seedDB = async () =>{
             author: '630d923cd298a0d4b9427086',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
-            image: 'https://source.unsplash.com/collection/483251',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, minima saepe ipsa eaque esse sint at odio perferendis qui aliquid modi placeat blanditiis quasi, facere rem corrupti est. Iste, ipsam.',
-            price
+            price,
+            images: [
+                {
+                  url: 'https://res.cloudinary.com/spacemicrowave/image/upload/v1662991623/YelpCamp/mbrpybrhhw2gf4p15eoc.jpg',
+                  filename: 'YelpCamp/mbrpybrhhw2gf4p15eoc'
+                },
+                {
+                  url: 'https://res.cloudinary.com/spacemicrowave/image/upload/v1662991629/YelpCamp/lhmn2a7r4ajf2yogk4bi.jpg',
+                  filename: 'YelpCamp/lhmn2a7r4ajf2yogk4bi'
+                },
+                {
+                  url: 'https://res.cloudinary.com/spacemicrowave/image/upload/v1662991630/YelpCamp/igskehaustjiotz6rekq.jpg',
+                  filename: 'YelpCamp/igskehaustjiotz6rekq'
+                },
+                {
+                  url: 'https://res.cloudinary.com/spacemicrowave/image/upload/v1662991639/YelpCamp/i1okj4xxqpuazkdfijlu.jpg',
+                  filename: 'YelpCamp/i1okj4xxqpuazkdfijlu'
+                },
+                {
+                  url: 'https://res.cloudinary.com/spacemicrowave/image/upload/v1662991644/YelpCamp/snwiritw3ioqjuc4leg6.jpg',
+                  filename: 'YelpCamp/snwiritw3ioqjuc4leg6'
+                },
+                {
+                  url: 'https://res.cloudinary.com/spacemicrowave/image/upload/v1662991650/YelpCamp/l6arfbcyarlnkdowkdfd.jpg',
+                  filename: 'YelpCamp/l6arfbcyarlnkdowkdfd'
+                }
+              ]
         });
         await camp.save();
     }
