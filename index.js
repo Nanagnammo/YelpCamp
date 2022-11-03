@@ -20,11 +20,11 @@ const mongoSanitize = require('express-mongo-sanitize');
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
+const MongoStore = require('connect-mongo');
 
-// const dbUrl = process.env.DB_URL;     //mongoDB AlphaCluster
+const dbUrl = 'mongodb://localhost:27017/yelp-camp';        //process.env.DB_URL;
 
-// 'mongodb://localhost:27017/yelp-camp'     //local database
-mongoose.connect('mongodb://localhost:27017/yelp-camp');
+mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -43,7 +43,20 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize());
 
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret: 'findbettersecret'
+    }
+});
+
+store.on('error', function(e){
+    console.log('session store Error', e)
+});
+
 const sessionConfig = {
+    store,
     name: 'Biscotto',
     secret: 'findbettersecret',
     resave: false,
